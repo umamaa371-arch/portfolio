@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ayesha Bukhari — Video Editor Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500;600&family=Cinzel:wght@700;900&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --red:    #C0392B;
+    --red2:   #E74C3C;
+    --red-glow: rgba(192, 57, 43, 0.35);
+    --blue:   #1A6FA8;
+    --blue2:  #2196F3;
+    --blue-glow: rgba(33, 150, 243, 0.3);
+    --grey:   #2B2B2B;
+    --grey2:  #3E3E3E;
+    --grey3:  #787878;
+    --light:  #EDEDED;
+    --white:  #FFFFFF;
+    --dark:   #111111;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(192,57,43,0.18);
+  }
+  .nav-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.5rem; letter-spacing: 2px;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--red2); }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.95rem; font-weight: 600; letter-spacing: 2px;
+    color: var(--grey3); text-decoration: none; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--red2); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 60px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 70% 50%, rgba(26,111,168,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 20% 80%, rgba(192,57,43,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero-noise {
+    position: absolute; inset: 0; opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 5px;
+    color: var(--red2); text-transform: uppercase;
+    margin-bottom: 16px; display: flex; align-items: center; gap: 10px;
+    animation: fadeUp .7s ease both;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 32px; height: 2px; background: var(--red2);
+  }
+  .hero-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 900; line-height: .95;
+    text-transform: uppercase; letter-spacing: -1px;
+    animation: fadeUp .7s .1s ease both;
+  }
+  .hero-name .red { color: var(--red2); }
+  .hero-name .blue { color: var(--blue2); }
+  .hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem); font-weight: 400;
+    letter-spacing: 4px; text-transform: uppercase;
+    color: var(--grey3); margin-top: 18px;
+    animation: fadeUp .7s .2s ease both;
+  }
+  .hero-desc {
+    max-width: 480px; font-size: 1rem; line-height: 1.7;
+    color: #aaa; margin-top: 24px;
+    animation: fadeUp .7s .3s ease both;
+  }
+  .hero-badges {
+    display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px;
+    animation: fadeUp .7s .4s ease both;
+  }
+  .badge {
+    padding: 8px 20px; border-radius: 2px; font-size: .78rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  }
+  .badge-red { background: var(--red); color: #fff; }
+  .badge-blue { background: var(--blue); color: #fff; }
+  .badge-outline { border: 1px solid var(--grey2); color: var(--grey3); }
+  .hero-cta {
+    display: flex; gap: 16px; margin-top: 40px;
+    animation: fadeUp .7s .5s ease both;
+  }
+  .btn {
+    padding: 14px 36px; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700; font-size: 1rem; letter-spacing: 3px;
+    text-transform: uppercase; cursor: pointer; border: none;
+    text-decoration: none; transition: all .25s;
+  }
+  .btn-red { background: var(--red2); color: #fff; }
+  .btn-red:hover { background: var(--red); box-shadow: 0 0 28px var(--red-glow); }
+  .btn-ghost { background: transparent; color: var(--white); border: 1px solid #555; }
+  .btn-ghost:hover { border-color: var(--blue2); color: var(--blue2); }
+
+  /* Hero Visual */
+  .hero-visual {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; align-items: center;
+    animation: fadeIn .9s .3s ease both;
+  }
+  .video-frame {
+    width: 100%; max-width: 480px;
+    aspect-ratio: 16/9;
+    background: var(--grey);
+    position: relative; overflow: hidden;
+    border: 2px solid rgba(192,57,43,0.4);
+    box-shadow: 0 0 60px rgba(192,57,43,0.15), 0 0 0 1px rgba(255,255,255,0.03);
+  }
+  .video-frame img {
+    width: 100%; height: 100%; object-fit: cover; opacity: .85;
+  }
+  .video-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(192,57,43,0.15) 0%, transparent 50%,rgba(26,111,168,0.15) 100%);
+  }
+  .video-tag {
+    position: absolute; bottom: 16px; left: 16px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 700; letter-spacing: 2px;
+    color: #fff; background: rgba(192,57,43,0.85);
+    padding: 4px 12px;
+  }
+  .frame-corner {
+    position: absolute; width: 20px; height: 20px;
+    border-color: var(--red2); border-style: solid;
+  }
+  .corner-tl { top: -2px; left: -2px; border-width: 3px 0 0 3px; }
+  .corner-tr { top: -2px; right: -2px; border-width: 3px 3px 0 0; }
+  .corner-bl { bottom: -2px; left: -2px; border-width: 0 0 3px 3px; }
+  .corner-br { bottom: -2px; right: -2px; border-width: 0 3px 3px 0; }
+
+  /* Scroll line */
+  .scroll-line {
+    position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--grey3); font-size: .7rem; letter-spacing: 3px; text-transform: uppercase;
+    font-family: 'Barlow Condensed', sans-serif;
+    animation: fadeIn 1s 1s ease both;
+  }
+  .scroll-line::after {
+    content: ''; width: 1px; height: 40px;
+    background: linear-gradient(to bottom, var(--red2), transparent);
+    animation: scrollPulse 1.5s infinite;
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #222; border-bottom: 1px solid #222;
+  }
+  .stat-item {
+    padding: 36px 40px; border-right: 1px solid #222;
+    position: relative;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem; font-weight: 900; line-height: 1;
+    color: var(--white);
+  }
+  .stat-num span { color: var(--red2); }
+  .stat-label {
+    font-size: .8rem; color: var(--grey3); letter-spacing: 2px;
+    text-transform: uppercase; margin-top: 6px;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 48px; }
+  .section-header { margin-bottom: 64px; }
+  .section-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .78rem; font-weight: 700; letter-spacing: 5px;
+    text-transform: uppercase; color: var(--red2);
+    display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+  }
+  .section-tag::before { content: ''; width: 24px; height: 2px; background: var(--red2); }
+  .section-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(2.4rem, 4vw, 3.6rem); font-weight: 900;
+    text-transform: uppercase; letter-spacing: -1px; line-height: 1;
+  }
+  .section-title em { color: var(--blue2); font-style: normal; }
+
+  /* ── FEATURED PROJECT: BANO QABIL ── */
+  .featured {
+    background: linear-gradient(135deg, #0d0d0d 0%, #151515 100%);
+    position: relative; overflow: hidden;
+  }
+  .featured::before {
+    content: 'BANO\AQABIL';
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18vw; font-weight: 900; text-transform: uppercase;
+    color: rgba(255,255,255,0.02);
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    white-space: nowrap; pointer-events: none; letter-spacing: -4px;
+  }
+  .featured-grid {
+    display: grid; grid-template-columns: 1.1fr 0.9fr;
+    gap: 60px; align-items: center; position: relative; z-index: 1;
+  }
+  .project-video-wrap {
+    position: relative;
+    background: var(--grey);
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border: 1px solid rgba(192,57,43,0.3);
+  }
+  .project-video-wrap video {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .project-video-wrap::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+  }
+  .play-btn {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    width: 64px; height: 64px; border-radius: 50%;
+    background: rgba(192,57,43,0.85);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 2; transition: all .2s;
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+  .play-btn:hover { background: var(--red2); transform: translate(-50%,-50%) scale(1.1); }
+  .play-btn svg { width: 24px; height: 24px; fill: #fff; margin-left: 4px; }
+  .project-info { padding: 20px 0; }
+  .project-client {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .78rem; font-weight: 700; letter-spacing: 4px;
+    color: var(--blue2); text-transform: uppercase; margin-bottom: 12px;
+  }
+  .project-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 3rem; font-weight: 900; text-transform: uppercase;
+    line-height: 1; letter-spacing: -1px;
+  }
+  .project-title .accent { color: var(--red2); }
+  .project-desc {
+    font-size: .95rem; color: #aaa; line-height: 1.7;
+    margin-top: 16px; max-width: 400px;
+  }
+  .project-tags {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px;
+  }
+  .ptag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; padding: 6px 14px;
+    border: 1px solid #333; color: #888;
+  }
+  .ptag.red { border-color: var(--red); color: var(--red2); }
+  .ptag.blue { border-color: var(--blue); color: var(--blue2); }
+  .project-metrics {
+    display: flex; gap: 32px; margin-top: 32px;
+    padding-top: 32px; border-top: 1px solid #222;
+  }
+  .metric-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.9rem; font-weight: 900; color: var(--white);
+  }
+  .metric-val span { color: var(--red2); }
+  .metric-lab { font-size: .75rem; color: #666; letter-spacing: 1px; margin-top: 2px; }
+
+  /* ── WHA CAMPUS SECTION ── */
+  .wha-section {
+    background: #0a0a0a;
+    position: relative; overflow: hidden;
+  }
+  .wha-section::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, var(--red2), var(--blue2), var(--red2));
+  }
+  .wha-grid {
+    display: grid; grid-template-columns: 0.9fr 1.1fr;
+    gap: 60px; align-items: center;
+  }
+  .wha-info .project-title { font-size: 2.8rem; }
+  .wha-videos {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .wha-video-card {
+    position: relative; aspect-ratio: 9/16;
+    background: var(--grey); overflow: hidden;
+    border: 1px solid #222; cursor: pointer;
+    transition: border-color .2s;
+  }
+  .wha-video-card:hover { border-color: var(--blue2); }
+  .wha-video-card video { width: 100%; height: 100%; object-fit: cover; opacity: .8; }
+  .wha-video-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
+  }
+  .wha-card-label {
+    position: absolute; bottom: 12px; left: 12px; right: 12px;
+    z-index: 2; font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; color: #fff;
+  }
+  .wha-video-card:first-child .wha-card-label { color: var(--red2); }
+  .wha-video-card:last-child .wha-card-label { color: var(--blue2); }
+
+  /* ── SKILLS ── */
+  .skills-section {
+    background: #0f0f0f;
+  }
+  .skills-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  }
+  .skill-block {
+    padding: 48px 36px;
+    background: #111;
+    border: 1px solid #1a1a1a;
+    position: relative; overflow: hidden;
+    transition: border-color .2s;
+  }
+  .skill-block:hover { border-color: #333; }
+  .skill-block::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--red2); transform: scaleX(0);
+    transform-origin: left; transition: transform .3s;
+  }
+  .skill-block:hover::before { transform: scaleX(1); }
+  .skill-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 700; letter-spacing: 3px;
+    color: var(--grey3); margin-bottom: 24px;
+  }
+  .skill-icon { font-size: 2rem; margin-bottom: 20px; }
+  .skill-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.6rem; font-weight: 900; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--white);
+  }
+  .skill-desc { font-size: .88rem; color: #666; margin-top: 10px; line-height: 1.6; }
+  .skill-tools {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-top: 18px;
+  }
+  .skill-tool {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .7rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; padding: 4px 10px;
+    background: #1a1a1a; color: #555;
+    border: 1px solid #222;
+  }
+
+  /* ── PROCESS ── */
+  .process-section { background: var(--dark); }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; border: 1px solid #1e1e1e;
+  }
+  .process-step {
+    padding: 48px 32px;
+    border-right: 1px solid #1e1e1e; position: relative;
+  }
+  .process-step:last-child { border-right: none; }
+  .step-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 5rem; font-weight: 900; line-height: 1;
+    color: rgba(255,255,255,0.04); position: absolute;
+    top: 16px; right: 20px;
+  }
+  .step-icon { font-size: 1.6rem; margin-bottom: 20px; }
+  .step-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.3rem; font-weight: 900; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--white);
+  }
+  .step-desc { font-size: .85rem; color: #666; margin-top: 10px; line-height: 1.6; }
+  .step-accent { color: var(--red2); }
+  .step-accent-blue { color: var(--blue2); }
+
+  /* ── CONTACT ── */
+  .contact-section {
+    background: #080808;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .contact-section::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(to right, transparent, var(--red2), var(--blue2), transparent);
+  }
+  .contact-big {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(3rem, 8vw, 7rem); font-weight: 900;
+    text-transform: uppercase; letter-spacing: -2px; line-height: 1;
+    color: var(--white); margin: 40px 0;
+  }
+  .contact-big .red { color: var(--red2); }
+  .contact-big .blue { color: var(--blue2); }
+  .contact-links {
+    display: flex; justify-content: center; flex-wrap: wrap; gap: 24px;
+    margin-top: 48px;
+  }
+  .contact-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1rem; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; padding: 16px 40px; border: 1px solid #333;
+    color: var(--grey3); text-decoration: none; transition: all .2s;
+  }
+  .contact-link:hover { border-color: var(--red2); color: var(--red2); }
+  .contact-link.primary {
+    background: var(--red2); border-color: var(--red2); color: #fff;
+  }
+  .contact-link.primary:hover { background: var(--red); box-shadow: 0 0 32px var(--red-glow); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 48px;
+    background: #050505;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid #111;
+  }
+  .footer-logo {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900; font-size: 1.2rem; letter-spacing: 2px;
+  }
+  .footer-logo span { color: var(--red2); }
+  .footer-copy { font-size: .8rem; color: #444; letter-spacing: 1px; }
+  .footer-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: .75rem; font-weight: 700; letter-spacing: 3px;
+    color: var(--blue2); text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; transform: scaleY(1); }
+    50%       { opacity: .4; transform: scaleY(.6); }
+  }
+
+  /* reveal on scroll */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
+    .hero-visual { margin-top: 40px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    section { padding: 70px 24px; }
+    .featured-grid, .wha-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .contact-big { font-size: 3rem; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AYESHA <span>BUKHARI</span></div>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-noise"></div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">Video Editor & Creative Storyteller</div>
+    <h1 class="hero-name">
+      AYESHA<br>
+      <span class="red">BU</span><span class="blue">KHARI</span>
+    </h1>
+    <div class="hero-title">Crafting Visuals That Speak</div>
+    <p class="hero-desc">
+      From powerful social reels to impactful documentary-style cuts — I transform raw footage into compelling stories. Specializing in educational, corporate & brand video content.
+    </p>
+    <div class="hero-badges">
+      <span class="badge badge-red">Video Editing</span>
+      <span class="badge badge-blue">Motion Graphics</span>
+      <span class="badge badge-outline">Color Grading</span>
+      <span class="badge badge-outline">Reels & Shorts</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-red">View My Work</a>
+      <a href="#contact" class="btn btn-ghost">Hire Me</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="video-frame">
+      <img src="/mnt/user-data/uploads/IMG-20260510-WA0012.jpg" alt="Ayesha Bukhari Video Editing Portfolio" />
+      <div class="video-overlay"></div>
+      <div class="video-tag">▶ VIDEO EDITOR</div>
+      <div class="frame-corner corner-tl"></div>
+      <div class="frame-corner corner-tr"></div>
+      <div class="frame-corner corner-bl"></div>
+      <div class="frame-corner corner-br"></div>
+    </div>
+  </div>
+  <div class="scroll-line">Scroll</div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar reveal">
+  <div class="stat-item">
+    <div class="stat-num">50<span>+</span></div>
+    <div class="stat-label">Videos Edited</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2<span>+</span></div>
+    <div class="stat-label">Years Experience</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5<span>★</span></div>
+    <div class="stat-label">Client Rating</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">10<span>+</span></div>
+    <div class="stat-label">Happy Clients</div>
+  </div>
+</div>
+
+<!-- FEATURED: BANO QABIL -->
+<section class="featured" id="work">
+  <div class="section-header reveal">
+    <div class="section-tag">Featured Project</div>
+    <h2 class="section-title">BANO <em>QABIL</em></h2>
+  </div>
+  <div class="featured-grid">
+    <div class="project-video-wrap reveal">
+      <video controls poster="">
+        <source src="/mnt/user-data/uploads/lv_0_20260510151216.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="play-btn" onclick="this.closest('.project-video-wrap').querySelector('video').play(); this.style.display='none';">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+    <div class="project-info reveal">
+      <div class="project-client">📍 Karachi, Pakistan</div>
+      <h3 class="project-title">BANO <span class="accent">QABIL</span></h3>
+      <p class="project-desc">
+        Empowering Pakistan's youth through skill development. I crafted compelling video content for the Bano Qabil initiative — blending documentary storytelling with dynamic motion graphics to inspire thousands of young learners.
+      </p>
+      <div class="project-tags">
+        <span class="ptag red">Documentary Style</span>
+        <span class="ptag blue">Motion Graphics</span>
+        <span class="ptag">Social Reels</span>
+        <span class="ptag">Color Grading</span>
+        <span class="ptag">Urdu Subtitles</span>
+      </div>
+      <div class="project-metrics">
+        <div>
+          <div class="metric-val">4<span>K+</span></div>
+          <div class="metric-lab">Views Generated</div>
+        </div>
+        <div>
+          <div class="metric-val">3<span>×</span></div>
+          <div class="metric-lab">Engagement Boost</div>
+        </div>
+        <div>
+          <div class="metric-val">2<span>min</span></div>
+          <div class="metric-lab">Avg Watch Time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Second Bano Qabil video -->
+  <div class="featured-grid" style="margin-top:60px; direction: rtl;">
+    <div class="project-video-wrap reveal">
+      <video controls>
+        <source src="/mnt/user-data/uploads/lv_0_20260510125004.mp4" type="video/mp4">
+      </video>
+      <div class="play-btn" onclick="this.closest('.project-video-wrap').querySelector('video').play(); this.style.display='none';">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+    <div class="project-info reveal" style="direction: ltr;">
+      <div class="project-client">🎓 Educational Campaign</div>
+      <h3 class="project-title">SKILL <span class="accent">PAKISTAN</span></h3>
+      <p class="project-desc">
+        A follow-up reel showcasing the impact of Bano Qabil's training programs. Fast-paced cuts, bold typography overlays, and energetic pacing designed to drive social sharing and enrollment.
+      </p>
+      <div class="project-tags">
+        <span class="ptag red">Fast-Cut Editing</span>
+        <span class="ptag blue">Typography Overlay</span>
+        <span class="ptag">Reels Format</span>
+        <span class="ptag">Storytelling</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHA CAMPUS -->
+<section class="wha-section" id="wha">
+  <div class="section-header reveal">
+    <div class="section-tag">Campaign Work</div>
+    <h2 class="section-title">WHA <em>CAMPUS</em></h2>
+  </div>
+  <div class="wha-grid">
+    <div class="wha-info reveal">
+      <div class="project-client">🎓 WHA Campus — Pakistan</div>
+      <h3 class="project-title" style="font-size:2.4rem;">WHA <span class="accent">CAMPUS</span><br>CONTENT</h3>
+      <p class="project-desc">
+        Dynamic video content for WHA Campus — capturing student life, courses, and success stories with professional editing that elevates the institution's digital presence and drives admissions.
+      </p>
+      <div class="project-tags">
+        <span class="ptag red">Campus Videos</span>
+        <span class="ptag blue">Student Stories</span>
+        <span class="ptag">Vertical Reels</span>
+        <span class="ptag">Brand Identity</span>
+      </div>
+      <div style="margin-top:32px;">
+        <a href="#contact" class="btn btn-red" style="display:inline-block;">Work With Me</a>
+      </div>
+    </div>
+    <div class="wha-videos reveal">
+      <div class="wha-video-card">
+        <video controls>
+          <source src="/mnt/user-data/uploads/lv_0_20260502152340.mp4" type="video/mp4">
+        </video>
+        <div class="wha-card-label">WHA Campus — Reel 01</div>
+      </div>
+      <div class="wha-video-card">
+        <video controls>
+          <source src="/mnt/user-data/uploads/lv_0_20260418231301.mp4" type="video/mp4">
+        </video>
+        <div class="wha-card-label">WHA Campus — Reel 02</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-section" id="skills">
+  <div class="section-header reveal">
+    <div class="section-tag">Capabilities</div>
+    <h2 class="section-title">MY <em>SKILLS</em></h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block reveal">
+      <div class="skill-num">01</div>
+      <div class="skill-icon">🎬</div>
+      <div class="skill-name">Video Editing</div>
+      <div class="skill-desc">Professional cuts, pacing, transitions and storytelling structure for all video formats.</div>
+      <div class="skill-tools">
+        <span class="skill-tool">Premiere Pro</span>
+        <span class="skill-tool">CapCut</span>
+        <span class="skill-tool">DaVinci</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-num">02</div>
+      <div class="skill-icon">✨</div>
+      <div class="skill-name">Motion Graphics</div>
+      <div class="skill-desc">Animated text, logo reveals, kinetic typography and dynamic overlays.</div>
+      <div class="skill-tools">
+        <span class="skill-tool">After Effects</span>
+        <span class="skill-tool">CapCut</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-num">03</div>
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">Color Grading</div>
+      <div class="skill-desc">Cinematic LUTs, mood-driven color correction and consistent brand aesthetics.</div>
+      <div class="skill-tools">
+        <span class="skill-tool">DaVinci Resolve</span>
+        <span class="skill-tool">LUTs</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-num">04</div>
+      <div class="skill-icon">📱</div>
+      <div class="skill-name">Reels & Shorts</div>
+      <div class="skill-desc">Vertical video content optimized for Instagram, TikTok, YouTube Shorts.</div>
+      <div class="skill-tools">
+        <span class="skill-tool">Instagram</span>
+        <span class="skill-tool">TikTok</span>
+        <span class="skill-tool">YouTube</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-num">05</div>
+      <div class="skill-icon">🔊</div>
+      <div class="skill-name">Audio Mixing</div>
+      <div class="skill-desc">Sound design, music sync, voiceover cleanup and audio enhancement.</div>
+      <div class="skill-tools">
+        <span class="skill-tool">Audition</span>
+        <span class="skill-tool">Premiere</span>
+      </div>
+    </div>
+    <div class="skill-block reveal">
+      <div class="skill-num">06</div>
+      <div class="skill-icon">💡</div>
+      <div class="skill-name">Content Strategy</div>
+      <div class="skill-desc">Story arc planning, hook design and platform-native content optimization.</div>
+      <div class="skill-tools">
+        <span class="skill-tool">Storytelling</span>
+        <span class="skill-tool">Hooks</span>
+        <span class="skill-tool">Scripting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process-section" id="process">
+  <div class="section-header reveal">
+    <div class="section-tag">How I Work</div>
+    <h2 class="section-title">MY <em>PROCESS</em></h2>
+  </div>
+  <div class="process-steps reveal">
+    <div class="process-step">
+      <div class="step-num">01</div>
+      <div class="step-icon">💬</div>
+      <div class="step-title"><span class="step-accent">Brief</span> & Vision</div>
+      <div class="step-desc">I understand your goals, target audience, brand tone, and desired output format.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">02</div>
+      <div class="step-icon">✂️</div>
+      <div class="step-title"><span class="step-accent-blue">Edit</span> & Structure</div>
+      <div class="step-desc">Raw footage is cut, sequenced and structured for maximum impact and flow.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">03</div>
+      <div class="step-icon">🎨</div>
+      <div class="step-title"><span class="step-accent">Polish</span> & Refine</div>
+      <div class="step-desc">Color grading, motion graphics, music sync and text overlays are applied.</div>
+    </div>
+    <div class="process-step">
+      <div class="step-num">04</div>
+      <div class="step-icon">🚀</div>
+      <div class="step-title"><span class="step-accent-blue">Deliver</span> & Launch</div>
+      <div class="step-desc">Final export in your required format with revisions included. Ready to publish.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <div class="section-tag" style="justify-content:center;">Let's Create Together</div>
+    <h2 class="contact-big">
+      LET'S MAKE<br>
+      <span class="red">YOUR</span> <span class="blue">VISION</span><br>
+      COME ALIVE
+    </h2>
+    <p style="color:#666; font-size:.95rem; max-width:500px; margin:0 auto; line-height:1.7;">
+      Looking for a dedicated video editor for your educational, corporate, or social media content? Let's talk.
+    </p>
+    <div class="contact-links">
+      <a href="mailto:ayeshabukhari@email.com" class="contact-link primary">📧 Email Me</a>
+      <a href="https://www.linkedin.com/in/ayesha-bukhari" class="contact-link" target="_blank">💼 LinkedIn</a>
+      <a href="https://umamaa371-arch.github.io/portfolio" class="contact-link" target="_blank">🌐 Portfolio Site</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">AYESHA <span>BUKHARI</span></div>
+  <div class="footer-copy">© 2026 — All Rights Reserved</div>
+  <div class="footer-tag">Video Editor · Karachi, PK</div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => observer.observe(r));
+
+  // Stagger reveal children
+  document.querySelectorAll('.skills-grid .skill-block, .process-steps .process-step, .stats-bar .stat-item')
+    .forEach((el, i) => {
+      el.style.transitionDelay = (i * 0.08) + 's';
+    });
+</script>
+</body>
+</html>
